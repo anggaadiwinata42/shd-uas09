@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Book: 100 HADIST BUKHARI MUSLIM</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-purple: #9b59b6;
+            --accent-red: #e74c3c;
+            --bg-light: #f8f9fa;
+            --sidebar-width: 320px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; height: 100vh; overflow: hidden; background: #f0f2f5; }
+
+        /* SIDEBAR NAVIGASI */
+        #sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary-color);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            background: #1a252f;
+            border-bottom: 1px solid #34495e;
+        }
+        .sidebar-header h2 { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.5px; color: #ecf0f1; }
+        .sidebar-header p { font-size: 0.8rem; color: #bdc3c7; margin-top: 5px; }
+
+        .menu-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px 0;
+        }
+
+        .menu-section { margin-bottom: 15px; }
+        .menu-title {
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 10px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+        .menu-item:hover { background: #34495e; padding-left: 25px; }
+        .menu-item.active {
+            background: #34495e;
+            border-left-color: #3498db;
+            font-weight: 600;
+        }
+
+        /* Batasan khusus warna bab */
+        .bab2-item.active { border-left-color: var(--accent-purple); }
+        .bab3-item.active { border-left-color: var(--accent-red); }
+
+        /* KONTEN UTAMA / IFRAME */
+        #main-content {
+            flex: 1;
+            height: 100vh;
+            position: relative;
+            background: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* HALAMAN COVER INTERNAL (Default View) */
+        .cover-page {
+            padding: 40px;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fdfbf7 0%, #eee8dd 100%);
+        }
+        .cover-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            max-width: 650px;
+            border-top: 8px solid var(--primary-color);
+        }
+        .cover-tag { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #7f8c8d; margin-bottom: 15px; font-weight: bold; }
+        .cover-title { font-size: 2.2rem; color: var(--primary-color); line-height: 1.3; margin-bottom: 20px; font-weight: 800; }
+        .cover-subtitle { font-size: 1.1rem; color: #555; margin-bottom: 35px; font-style: italic; }
+        .cover-divider { width: 80px; height: 3px; background: #3498db; margin: 20px auto; }
+        .cover-author { font-size: 1rem; font-weight: 600; color: #2c3e50; }
+        .cover-meta { font-size: 0.85rem; color: #95a5a6; margin-top: 5px; }
+        
+        .start-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .start-btn:hover { background: #1a252f; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGASI -->
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h2>STUDI HADIST DIGITAL</h2>
+            <p>E-Book HADIST DIGITAL</p>
+        </div>
+
+        <div class="menu-container">
+            <!-- PENGANTAR -->
+            <div class="menu-section">
+                <div class="menu-title">Utama</div>
+                <div class="menu-item active" onclick="loadPage('cover')">Halaman Pertama (Cover)</div>
+                <div class="menu-item" onclick="loadPage('sinopsis.html')">Sinopsis Buku</div>
+            </div>
+
+            <!-- BAB 1 -->
+            <div class="menu-section">
+                <div class="menu-title">BAB I: Peperangan</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_anmar.html')">Pertempuran Anmar</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_dzu_qarad.html')">Pertempuran Dzuq Qarad</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_hudaibiyah.html')">Pertempuran Hudaibiyah</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_kabar_dusta.html')">Kisah Kabar Dusta</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_khaibar.html')">Pertempuran Khaibar</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_khandaq.html')">Pertempuran Khandaq</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_quraidoh.html')">Kembalinya Rasulallah SAW dari perang Ahzab dan Keluarnya beliau menyerbu dan mengepung Bani Quraidoh</div>
+                <div class="menu-item bab1-item" onclick="loadPage('bab1_ukl_ukrainah.html')">Kisah Ukl dan Urainah</div>
+            </div>
+
+            <!-- BAB 2 -->
+            <div class="menu-section">
+                <div class="menu-title" style="color: var(--accent-purple);">BAB II: Etika Peperangan</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_non_kombatan.html')">Larangan Membunuh Non-Kombatan</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_batas_khianat.html')">Larangan Melampaui Batas & Berkhianat</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_siksa_api.html')">Larangan Menyiksa dengan Api</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_merusak_lingkungan.html')">Larangan Merusak Lingkungan</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_memutilasi_mayat.html')">Dilarang Memutilasi Mayat</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_ahli_ibadah.html')">Larangan Membunuh Ahli Ibadah</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_tawanan_perang.html')">Keadilan terhadap Tawanan Perang</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_harta_rampasan.html')">Harta Rampasan Perang</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_menepati_perjanjian.html')">Menepati Perjanjian</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_konsekuensi_melanggar.html')">Konsekuensi Melanggar Etika</div>
+                <div class="menu-item bab2-item" onclick="loadPage('bab2_menanam_pohon.html')">Menanam Pohon Adalah Sedekah</div>
+            </div>
+
+            <!-- BAB 3 -->
+            <div class="menu-section">
+                <div class="menu-title" style="color: var(--accent-red);">BAB III: Akhir Zaman</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_waktu_malhamah.html')">Waktu Terjadinya Malhamah Kubra</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_dabiq_amaq.html')">Perang Besar di Dabiq / A'maq</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_rentang_waktu.html')">Rentang Waktu Menuju Konstantinopel</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_pasukan_terbaik.html')">Pasukan Terbaik dari Madinah</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_dialog_muslim_romawi.html')">Dialog Muslim & Romawi Pra-Perang</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_tiga_golongan.html')">Tiga Golongan dalam Perang Besar</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_penaklukan_konstantinopel.html')">Penaklukan Konstantinopel</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_tipu_daya.html')">Tipu Daya Setelah Penaklukan</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_kembalinya_pasukan.html')">Kembalinya Pasukan ke Syam</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_kedahsyatan_perang.html')">Kedahsyatan Perang Besar</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_sisa_pasukan.html')">Sisa Pasukan yang Bertahan</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_khabar_dajjal.html')">Khabar Munculnya Dajjal</div>
+                <div class="menu-item bab3-item" onclick="loadPage('bab3_pasukan_pengejar.html')">Pasukan Pengejar Dajjal Terbaik</div>
+            </div>
+
+            <!-- AKHIR -->
+            <div class="menu-section">
+                <div class="menu-title">Penutup</div>
+                <div class="menu-item" onclick="loadPage('daftar_pustaka.html')">Daftar Pustaka</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AREA VIEW KONTEN UTAMA -->
+    <div id="main-content">
+        <!-- Halaman Cover Default -->
+        <div id="cover-view" class="cover-page">
+            <div class="cover-card">
+                <div class="cover-tag">E-Book Studi Hadis Digital</div>
+                <h1 class="cover-title">E-Book: 100 HADIST BUKHARI MUSLIM</h1>
+                <p class="cover-subtitle">Integrasi Nilai Kemanusiaan Islam di Medan Laga dan Rangkaian Kronik Nubuat Masa Depan Dunia</p>
+                <div class="cover-divider"></div>
+                <p class="cover-author">Disusun Oleh: Siti Rohmatuzzakiyyah</p>
+                <p class="cover-meta">Edisi Digital Komprehensif • 2026</p>
+                <button class="start-btn" onclick="startReading()">Mulai Membaca</button>
+            </div>
+        </div>
+        <!-- Iframe Konten Dinamis -->
+        <iframe id="content-frame" style="display: none;"></iframe>
+    </div>
+
+    <!-- JAVASCRIPT UNTUK NAVIGASI INTERAKTIF -->
+    <script>
+        const coverView = document.getElementById('cover-view');
+        const contentFrame = document.getElementById('content-frame');
+
+        function loadPage(pageUrl) {
+            // Mengatur status kelas aktif pada menu item sidebar
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+            
+            // Mencari item yang diklik berdasarkan fungsi parameternya
+            event.currentTarget.classList.add('active');
+
+            if (pageUrl === 'cover') {
+                contentFrame.style.display = 'none';
+                coverView.style.display = 'flex';
+            } else {
+                coverView.style.display = 'none';
+                contentFrame.style.display = 'block';
+                contentFrame.src = pageUrl;
+            }
+        }
+
+        function startReading() {
+            // Fungsi tombol untuk langsung lompat ke Sinopsis Buku
+            const sinopsisItem = document.querySelector('[onclick="loadPage(\'sinopsis.html\')"]');
+            if (sinopsisItem) sinopsisItem.click();
+        }
+    </script>
+</body>
+</html>
